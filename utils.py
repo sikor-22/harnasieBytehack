@@ -17,6 +17,6 @@ vectorize_layer = keras.layers.TextVectorization(
     output_sequence_length = SEQUENCE_LENGTH
 )
 
-def vectorize_text(text, label):
+def vectorize_text(text):
     text = tf.expand_dims(text, -1)
-    return vectorize_layer(text), label
+    return vectorize_layer(text)
