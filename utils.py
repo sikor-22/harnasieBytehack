@@ -20,3 +20,17 @@ vectorize_layer = keras.layers.TextVectorization(
 def vectorize_text(text, label):
     text = tf.expand_dims(text, -1)
     return vectorize_layer(text), label
+
+def def_model():
+    inputs = keras.Input(shape=(None,), dtype="int64")
+    x = keras.layers.Embedding(MAX_FEATURES, EMBEDDING_DIM)(inputs)
+    x = keras.layers.Dropout(0.5)(x)
+    #Conv1d
+    x = keras.layers.Conv1D(128, 7, padding="valid", activation="relu", strides=3)(x)
+    x = keras.layers.Conv1D(128, 7, padding="valid", activation="relu", strides=3)(x)
+    x = keras.layers.GlobalMaxPooling1D()(x)
+    #Dense
+    x = keras.layers.Dense(128, activation="relu")(x)
+    x = keras.layers.Dropout(0.5)(x)
+    predictions = keras.layers.Dense(1, activation="sigmoid", name="predictions")(x)
+    return keras.Model(input, predictions)
