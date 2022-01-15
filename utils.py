@@ -19,4 +19,5 @@ vectorize_layer = keras.layers.TextVectorization(
 
 def vectorize_text(text, label):
     text = tf.expand_dims(text, -1)
+    vectorize_layer.adapt(text)
     return vectorize_layer(text), label
