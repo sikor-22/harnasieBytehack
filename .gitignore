@@ -1,3 +1,5 @@
 __pycache__/
 data1.csv
 data
+bert_base_uncased/
+.ipynb_checkpoints/
